@@ -3,7 +3,7 @@ import win32com.client
 import glaciesClasses as gc
 import ignisClasses as ic
 import standingsClass as sc
-import reader
+import csvReader as reader
 import configparser
 import time
 
@@ -21,19 +21,17 @@ week = config.get('config', 'Week')
 # Setup #
 #########
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
-options.Format = 6
 options.Quality = 100
 
 optionsTrans = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
-optionsTrans.Format = 6
 optionsTrans.Quality = 100
 optionsTrans.transparency = False
 optionsTrans.transparencyAmount = 100
 
-jpgFileGlaciesBG = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsGlaciesBG.jpg")
-jpgFileGlacies = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsGlacies.jpg")
-jpgFileIgnisBG = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsIgnisBG.jpg")
-jpgFileIgnis = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsIgnis.jpg")
+jpgFileGlaciesBG = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsGlaciesBG.png")
+jpgFileGlacies = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsGlacies.png")
+jpgFileIgnisBG = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsIgnisBG.png")
+jpgFileIgnis = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\StandingsIgnis.png")
 psApp = win32com.client.Dispatch("Photoshop.Application")
 psApp.Open(r"C:\Users\jaymu\Desktop\RSC\psd_editor\RSC Standings.psd")
 doc = psApp.Application.ActiveDocument
