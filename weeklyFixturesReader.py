@@ -135,46 +135,71 @@ for row in prospData:
         prospFixtures.append(row[3:])
 
 
-
 ###########################
 # Store fixtures to class #
 ###########################
 
 for row in premFixtures:
-    fc.prem.teamOrder.append(row[0]) # Team 1
-    fc.prem.teamOrder.append(row[4]) # Team 2
-    fc.prem.dateOrder.append(row[5]) # Date
-    fc.prem.timeOrder.append(row[6]) # Time
+    fc.prem.teamOrder.append(str(row[0]).upper()) # Team 1
+    fc.prem.teamOrder.append(str(row[4]).upper()) # Team 2
+    fc.prem.dateOrder.append(str(row[5])) # Date
+    fc.prem.timeOrder.append(str(row[6])) # Time
 
 for row in masterFixtures:
-    fc.master.teamOrder.append(row[0])
-    fc.master.teamOrder.append(row[4])
-    fc.master.dateOrder.append(row[5])
-    fc.master.timeOrder.append(row[6])
+    fc.master.teamOrder.append(str(row[0]).upper())
+    fc.master.teamOrder.append(str(row[4]).upper())
+    fc.master.dateOrder.append(str(row[5]))
+    fc.master.timeOrder.append(str(row[6]))
 
 for row in eliteFixtures:
-    fc.elite.teamOrder.append(row[0])
-    fc.elite.teamOrder.append(row[4])
-    fc.elite.dateOrder.append(row[5])
-    fc.elite.timeOrder.append(row[6])
+    fc.elite.teamOrder.append(str(row[0]).upper())
+    fc.elite.teamOrder.append(str(row[4]).upper())
+    fc.elite.dateOrder.append(str(row[5]))
+    fc.elite.timeOrder.append(str(row[6]))
 
 for row in rivalFixtures:
-    fc.rival.teamOrder.append(row[0])
-    fc.rival.teamOrder.append(row[4])
-    fc.rival.dateOrder.append(row[5])
-    fc.rival.timeOrder.append(row[6])
+    fc.rival.teamOrder.append(str(row[0]).upper())
+    fc.rival.teamOrder.append(str(row[4]).upper())
+    fc.rival.dateOrder.append(str(row[5]))
+    fc.rival.timeOrder.append(str(row[6]))
 
 for row in challFixtures:
-    fc.chall.teamOrder.append(row[0])
-    fc.chall.teamOrder.append(row[4])
-    fc.chall.dateOrder.append(row[5])
-    fc.chall.timeOrder.append(row[6])
+    fc.chall.teamOrder.append(str(row[0]).upper())
+    fc.chall.teamOrder.append(str(row[4]).upper())
+    fc.chall.dateOrder.append(str(row[5]))
+    fc.chall.timeOrder.append(str(row[6]))
 
 for row in prospFixtures:
-    fc.prosp.teamOrder.append(row[0])
-    fc.prosp.teamOrder.append(row[4])
-    fc.prosp.dateOrder.append(row[5])
-    fc.prosp.timeOrder.append(row[6])
+    fc.prosp.teamOrder.append(str(row[0]).upper())
+    fc.prosp.teamOrder.append(str(row[4]).upper())
+    fc.prosp.dateOrder.append(str(row[5]))
+    fc.prosp.timeOrder.append(str(row[6]))
+
+
+## Add logo order to classes
+for team in fc.prem.teamOrder: # Premier
+    franchAbbr = fc.teamsPrem[team]
+    fc.prem.logoOrder.append(franchAbbr)
+
+for team in fc.master.teamOrder: # Master
+    franchAbbr = fc.teamsMaster[team]
+    fc.master.logoOrder.append(franchAbbr)
+
+for team in fc.elite.teamOrder: # Elite
+    franchAbbr = fc.teamsElite[team]
+    fc.elite.logoOrder.append(franchAbbr)
+
+for team in fc.rival.teamOrder: # Rival
+    franchAbbr = fc.teamsRival[team]
+    fc.rival.logoOrder.append(franchAbbr)
+
+for team in fc.chall.teamOrder: # Challenger
+    franchAbbr = fc.teamsChall[team]
+    fc.chall.logoOrder.append(franchAbbr)
+
+for team in fc.prosp.teamOrder: # Prospect
+    franchAbbr = fc.teamsProsp[team]
+    fc.prosp.logoOrder.append(franchAbbr)
 
 
 ## Take lineups from GSheet
