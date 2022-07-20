@@ -1,4 +1,3 @@
-from regex import F
 import win32com.client
 import standingsClass as sc
 import gsReader as reader
@@ -26,12 +25,14 @@ week = config.get('config', 'Week')
 # Setup #
 #########
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
-options.Quality = 100
+options.Format = 13
+options.quality = 100
+options.PNG8 = False  # Sets it to PNG-24 bit
 
-optionsTrans = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
-optionsTrans.Quality = 100
-
-
+pngOpts = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
+pngOpts.Format = 13   # PNG Format
+pngOpts.PNG8 = False  # Sets it to PNG-24 bit
+pngOpts.quality = 100
 
 def editStandings():
     psApp = win32com.client.Dispatch("Photoshop.Application")
@@ -746,7 +747,7 @@ def editStandings():
 
         backgroundGroup = doc.activeLayer = (doc.layerSets["Background"])
         background = (backgroundGroup.layerSets["Background"])
-        doc.Export(ExportIn=jpgFileGlacies, ExportAs=2, Options=optionsTrans)
+        doc.Export(ExportIn=jpgFileGlacies, ExportAs=2, Options=pngOpts)
         time.sleep(3)
         background.visible = True
         time.sleep(3)
@@ -1406,9 +1407,12 @@ def editStandings():
 
         backgroundGroup = doc.activeLayer = (doc.layerSets["Background"])
         background = (backgroundGroup.layerSets["Background"])
-        doc.Export(ExportIn=jpgFileIgnis, ExportAs=2, Options=optionsTrans)
+        doc.Export(ExportIn=jpgFileGlacies, ExportAs=2, Options=pngOpts)
+        time.sleep(3)
         background.visible = True
-        doc.Export(ExportIn=jpgFileIgnisBG, ExportAs=2, Options=options)
+        time.sleep(3)
+        doc.Export(ExportIn=jpgFileGlaciesBG, ExportAs=2, Options=options)
+        doc.Close(2)
 
 editStandings()
 
