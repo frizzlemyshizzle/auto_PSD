@@ -1,5 +1,0 @@
-[config]
-Tier = Rival
-Week = 5
-
-
