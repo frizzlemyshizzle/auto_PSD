@@ -1,14 +1,17 @@
+from pickletools import TAKEN_FROM_ARGUMENT1
 import gspread
 import win32com.client
 import configparser
-
-
+import teamsData as td
+import os
 
 #########
 # Setup #
 #########
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 psApp = win32com.client.Dispatch("Photoshop.Application")
-psApp.Open(r"C:\Users\jaymu\Desktop\RSC\psd_editor\fixGraphics\RSC10_PlayerStats.psd")
+psApp.Open(os.path.join(__location__, 'fixGraphics/RSC10_PlayerStats.psd'))
 doc = psApp.Application.ActiveDocument 
 
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
@@ -28,13 +31,17 @@ team1Data = teamStats.get("A4:I7")
 if len(team1Data[3]) == 1:
     team1Data = teamStats.get("A4:I6")
     team1Flag = True
+else:
+    team1Flag = False
 
 team2Data = teamStats.get("A8:I11")
 if len(team2Data[3]) == 1:
     team1Data = teamStats.get("A8:I10")
     team2Flag = True
+else:
+    team2Flag = False
 
-print(team1Data)
+
 team1Names = []
 team1Players = []
 team1Played = []
@@ -67,7 +74,6 @@ for row in team1Data:
     team1ShotPerc.append(row[6])
     team1WinPerc.append(row[7])
     team1GoalPart.append(row[8])
-print(team1Names[0])
 
 for row in team2Data:
     team2Names.append(row[0])
@@ -80,13 +86,42 @@ for row in team2Data:
     team2WinPerc.append(row[7])
     team2GoalPart.append(row[8])
 
+##########
+# Editor #
+##########
+upperGroup = doc.activeLayer = (doc.layerSets["4 Players"])
+leftGroup = upperGroup.layerSets["TS_Blue"]
+rightGroup = upperGroup.layerSets["TS_Red"]
+
+
+
+######################
+# Team Names & Logos #
+######################
+team1Name = str(team1Names[0].upper())
+team1Abbr = td.teams[team1Name]
+team1NameLayer = leftGroup.artLayers["LeftTeam"]
+team1NameLayerText = team1NameLayer.textItem
+team1NameLayerText.contents = team1Names[0]
+team1LogoGroup = leftGroup.layerSets["TSB_Logo"]
+team1Logo = team1LogoGroup.ArtLayers[team1Abbr]
+team1Logo.visible = True
+
+team2Name = str(team2Names[0].upper())
+team2Abbr = td.teams[team2Name]
+team2NameLayer = rightGroup.artLayers["RightTeam"]
+team2NameLayerText = team2NameLayer.textItem
+team2NameLayerText.contents = team2Names[0]
+team2LogoGroup = rightGroup.layerSets["TSR_Logo"]
+team2Logo = team2LogoGroup.ArtLayers[team2Abbr]
+team2Logo.visible = True
+
+
+
                                                                     #####################
                                                                     # Left Team / Team1 #
                                                                     #####################
 
-
-upperGroup = doc.activeLayer = (doc.layerSets["4 Players"])
-leftGroup = upperGroup.layerSets["TS_Blue"]
 player1 = leftGroup.layerSets["Player 1"]
 player2 = leftGroup.layerSets["Player 2"]
 player3 = leftGroup.layerSets["Player 3"]
@@ -114,6 +149,7 @@ if team1Flag != True:
     player4NameText.contents = team1Players[3]
 else:
     player4Name.visible = False
+    
 ################
 # Games Played #
 ################
@@ -182,8 +218,6 @@ if team1Flag != True:
     player4AssistsText.contents = team1Assists[3]
 else:
     player4Assists.visible = False
-
-
 
 #########
 # Saves #
@@ -284,7 +318,6 @@ else:
                                                                     # Right Team / Team2 #
                                                                     ######################
 
-rightGroup = upperGroup.layerSets["TS_Red"]
 player1 = rightGroup.layerSets["Player 1"]
 player2 = rightGroup.layerSets["Player 2"]
 player3 = rightGroup.layerSets["Player 3"]
@@ -307,7 +340,7 @@ player3NameText = player3Name.textItem
 player3NameText.contents = team2Players[2]
 # Player 4
 player4Name = player4.artLayers["Name"]
-if team1Flag != True:
+if team2Flag != True:
     player4NameText = player4Name.textItem
     player4NameText.contents = team2Players[3]
 else:
@@ -329,7 +362,7 @@ player3GamesText = player3Games.textItem
 player3GamesText.contents = team2Played[2]
 # Player 4
 player4Games = player4.ArtLayers["Games"]
-if team1Flag != True:
+if team2Flag != True:
     player4GamesText = player4Games.textItem
     player4GamesText.contents = team2Played[3]
 else:
@@ -352,7 +385,7 @@ player3GamesText = player3Games.textItem
 player3GamesText.contents = team2Goals[2]
 # Player 4
 player4Goals = player4.ArtLayers["Goals"]
-if team1Flag != True:
+if team2Flag != True:
     player4GoalsText = player4Goals.textItem
     player4GoalsText.contents = team2Goals[3]
 else:
@@ -375,7 +408,7 @@ player3AssistsText = player3Assists.textItem
 player3AssistsText.contents = team2Assists[2]
 # Player 4
 player4Assists = player4.ArtLayers["Assists"]
-if team1Flag != True:
+if team2Flag != True:
     player4AssistsText = player4Assists.textItem
     player4AssistsText.contents = team2Assists[3]
 else:
@@ -400,7 +433,7 @@ player3SavesText = player3Saves.textItem
 player3SavesText.contents = team2Saves[2]
 # Player 4
 player4Saves = player4.ArtLayers["Saves"]
-if team1Flag != True:
+if team2Flag != True:
     player4SavesText = player4Saves.textItem
     player4SavesText.contents = team2Saves[3]
 else:
@@ -423,7 +456,7 @@ player3ShotPercText = player3ShotPerc.textItem
 player3ShotPercText.contents = team2ShotPerc[2]
 # Player 4
 player4ShotPerc = player4.ArtLayers["ShotPerc"]
-if team1Flag != True:
+if team2Flag != True:
     player4ShotPercText = player4ShotPerc.textItem
     player4ShotPercText.contents = team2ShotPerc[3]
 else: 
@@ -446,7 +479,7 @@ player3WinPercText = player3WinPerc.textItem
 player3WinPercText.contents = team2WinPerc[2]
 # Player 4
 player4WinPerc = player4.ArtLayers["WinPerc"]
-if team1Flag != True:
+if team2Flag != True:
     player4WinPercText = player4WinPerc.textItem
     player4WinPercText.contents = team2WinPerc[3]
 else:
@@ -470,8 +503,12 @@ player3GoalPartText = player3GoalPart.textItem
 player3GoalPartText.contents = team2GoalPart[2]
 # Player 4
 player4GoalPart = player4.ArtLayers["GoalPart"]
-if team1Flag != True:
+if team2Flag != True:
     player4GoalPartText = player4GoalPart.textItem
     player4GoalPartText.contents = team2GoalPart[3]
 else:
     player4GoalPart.visible = False
+
+jpgFile = (os.path.join(__location__, 'Outputs/PlayerStats.png'))   
+doc.Export(ExportIn=jpgFile, ExportAs=2, Options=options)
+doc.Close(2)
