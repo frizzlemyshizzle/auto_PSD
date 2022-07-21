@@ -3,6 +3,7 @@ import configparser
 import win32com.client
 import fixturesClass as fc
 import time
+import os
 
 #################
 # Config Reader #
@@ -29,6 +30,10 @@ print(tiers[0])
 #########
 # Setup #
 #########
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
 options.Format = 13
 options.quality = 100
@@ -44,7 +49,7 @@ psApp = win32com.client.Dispatch("Photoshop.Application")
 def editDesk(numGames):
     loopCount = 0
     while loopCount < numGames:
-        psApp.Open(r"C:\Users\jaymu\Desktop\RSC\psd_editor\fixGraphics\RSC10_CasterScreen.psd")
+        psApp.Open(os.path.join(__location__, 'fixGraphics/RSC10_CasterScreen.psd'))
         doc = psApp.Application.ActiveDocument     
         ## Class Setter
         if tiers[0] == "Premier":
