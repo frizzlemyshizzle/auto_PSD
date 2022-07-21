@@ -1,3 +1,5 @@
+tiers = ['Premier', 'Master', 'Elite', 'Rival', 'Challenger', 'Prospect']
+
 franchises = {"ASCENCE ESPORTS": "ASC",
             "HAMOOD": "HAM",
             "LEODIS": "LDS",
