@@ -125,13 +125,12 @@ def editDesk(numGames):
         teams.pop(0)
         teams.pop(0)
         if loopCount == 0:
-            pngCasterDesk = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\CasterDesk.png")
+            pngCasterDesk = (os.path.join(__location__, 'Outputs/CasterDesk.png'))
         if loopCount == 1:
-            pngCasterDesk = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\CasterDesk2.png")    
+            pngCasterDesk = (os.path.join(__location__, 'Outputs/CasterDesk2.png'))  
         if loopCount == 2:
-            pngCasterDesk = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\CasterDesk3.png")        
+            pngCasterDesk = (os.path.join(__location__, 'Outputs/CasterDesk3.png'))     
         doc.Export(ExportIn=pngCasterDesk, ExportAs=2, Options=options)
-        time.sleep(2)
         doc.Close(2)
         print("Caster Screen " + str(loopCount+1) + " Saved")
 
