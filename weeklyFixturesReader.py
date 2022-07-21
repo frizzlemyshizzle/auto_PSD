@@ -142,37 +142,37 @@ for row in prospData:
 for row in premFixtures:
     fc.prem.teamOrder.append(str(row[0]).upper()) # Team 1
     fc.prem.teamOrder.append(str(row[4]).upper()) # Team 2
-    fc.prem.dateOrder.append(str(row[5])) # Date
+    fc.prem.dateOrder.append(str(row[5][0:5])) # Date
     fc.prem.timeOrder.append(str(row[6])) # Time
 
 for row in masterFixtures:
     fc.master.teamOrder.append(str(row[0]).upper())
     fc.master.teamOrder.append(str(row[4]).upper())
-    fc.master.dateOrder.append(str(row[5]))
+    fc.master.dateOrder.append(str(row[5][0:5]))
     fc.master.timeOrder.append(str(row[6]))
 
 for row in eliteFixtures:
     fc.elite.teamOrder.append(str(row[0]).upper())
     fc.elite.teamOrder.append(str(row[4]).upper())
-    fc.elite.dateOrder.append(str(row[5]))
+    fc.elite.dateOrder.append(str(row[5][0:5]))
     fc.elite.timeOrder.append(str(row[6]))
 
 for row in rivalFixtures:
     fc.rival.teamOrder.append(str(row[0]).upper())
     fc.rival.teamOrder.append(str(row[4]).upper())
-    fc.rival.dateOrder.append(str(row[5]))
+    fc.rival.dateOrder.append(str(row[5][0:5]))
     fc.rival.timeOrder.append(str(row[6]))
 
 for row in challFixtures:
     fc.chall.teamOrder.append(str(row[0]).upper())
     fc.chall.teamOrder.append(str(row[4]).upper())
-    fc.chall.dateOrder.append(str(row[5]))
+    fc.chall.dateOrder.append(str(row[5][0:5]))
     fc.chall.timeOrder.append(str(row[6]))
 
 for row in prospFixtures:
     fc.prosp.teamOrder.append(str(row[0]).upper())
     fc.prosp.teamOrder.append(str(row[4]).upper())
-    fc.prosp.dateOrder.append(str(row[5]))
+    fc.prosp.dateOrder.append(str(row[5][0:5]))
     fc.prosp.timeOrder.append(str(row[6]))
 
 
