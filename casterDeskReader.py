@@ -25,7 +25,6 @@ tiers = tiers.split(',')
 
 confs = config.get('config', 'Conferences')
 confs = confs.split(',')
-print(tiers[0])
 
 #########
 # Setup #
@@ -53,6 +52,7 @@ def editDesk(numGames):
         doc = psApp.Application.ActiveDocument     
         ## Class Setter
         if tiers[0] == "Premier":
+            premFlag = True
             teamsClass = fc.teamsPrem
         elif tiers[0] == "Master":
             teamsClass = fc.teamsMaster
@@ -75,22 +75,28 @@ def editDesk(numGames):
         tierBanner.visible = True
 
         ## Conf Banners
-        confBannerGroup = titleGroup.layerSets["Conference / Stage"]
-        confBanner = confBannerGroup.ArtLayers[confs[0]]
-        confBanner.visible = True
+        if tiers[0] != "Premier":
+            confBannerGroup = titleGroup.layerSets["Conference / Stage"]
+            confBanner = confBannerGroup.ArtLayers[confs[0]]
+            confBanner.visible = True
         
         ## Casters
         casterLeftGroup = doc.activeLayer = (doc.layerSets["CasterLeft"]) ## Group for Left Casters
         casterLeftName = casterLeftGroup.ArtLayers["Caster"]
         casterLeftText = casterLeftName.textItem
         casterLeftText.contents = castersList[0]
-        
+        casterLeftHandle = casterLeftGroup.ArtLayers["Handle"]
+
 
         casterRightGroup = doc.activeLayer = (doc.layerSets["CasterRight"]) ## Group for Right Casters
         casterRightName = casterRightGroup.ArtLayers["Caster"]
         casterRightText = casterRightName.textItem
         casterRightText.contents = castersList[1]
-        
+        casterRightHandle = casterRightGroup.ArtLayers["Handle"]
+ 
+
+
+
         ## Streamer
         streamerBannerGroup = doc.activeLayer = (doc.layerSets["StreamerBanner"])
         streamerName = streamerBannerGroup.ArtLayers["Streamer"]

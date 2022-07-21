@@ -35,7 +35,7 @@ teamsPrem = {"ARCTIC FRENZY": "AF",
             "VULCAN": "FORG",
             "ALHAMDOULILAH": "ALH",
             "ASCENCE ESPORTS": "ASC",
-            "ATVINTA": "FORG",
+            "ATVINTA": "ATV",
             "HAMOOD": "HAM",
             "LEODIS": "LDS",
             "PINGUINOS CF": "PCF"}
