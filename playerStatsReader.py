@@ -509,6 +509,6 @@ if team2Flag != True:
 else:
     player4GoalPart.visible = False
 
-jpgFile = (os.path.join(__location__, 'Outputs/PlayerStats.png'))   
+jpgFile = (os.path.join(__location__, 'Outputs/{}vs{}.png').format(team1Name, team2Name))   
 doc.Export(ExportIn=jpgFile, ExportAs=2, Options=options)
 doc.Close(2)
