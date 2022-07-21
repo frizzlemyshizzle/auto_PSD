@@ -38,7 +38,7 @@ teamsPrem = {"ARCTIC FRENZY": "AF",
             "ATVINTA": "FORG",
             "HAMOOD": "HAM",
             "LEODIS": "LDS",
-            "PINGUINOS CF": "PCF",}
+            "PINGUINOS CF": "PCF"}
 
 teamsMaster = {"SUB-ZERO": "AF",
             "NECROMANCERS": "DM",
@@ -176,6 +176,7 @@ class chall:
     teamOrder = []
     dateOrder = []
     timeOrder = []
+    logoOrder = []
 
 class prosp:
     teamOrder = []
