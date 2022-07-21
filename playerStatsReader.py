@@ -295,7 +295,7 @@ else:
 # Player 1
 player1GoalPart = player1.ArtLayers["GoalPart"]
 player1GoalPartText = player1GoalPart.textItem
-player1GoalPartText.contents = team1WinPerc[0]
+player1GoalPartText.contents = team1GoalPart[0]
 # Player 2
 player2GoalPart = player2.ArtLayers["GoalPart"]
 player2GoalPartText = player2GoalPart.textItem
@@ -492,7 +492,7 @@ else:
 # Player 1
 player1GoalPart = player1.ArtLayers["GoalPart"]
 player1GoalPartText = player1GoalPart.textItem
-player1GoalPartText.contents = team2WinPerc[0]
+player1GoalPartText.contents = team2GoalPart[0]
 # Player 2
 player2GoalPart = player2.ArtLayers["GoalPart"]
 player2GoalPartText = player2GoalPart.textItem
