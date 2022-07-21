@@ -43,7 +43,7 @@ psApp = win32com.client.Dispatch("Photoshop.Application")
 
 def editDesk(numGames):
     loopCount = 0
-    while loopCount <= numGames:
+    while loopCount < numGames:
         psApp.Open(r"C:\Users\jaymu\Desktop\RSC\psd_editor\fixGraphics\RSC10_CasterScreen.psd")
         doc = psApp.Application.ActiveDocument     
         ## Class Setter
@@ -128,6 +128,7 @@ def editDesk(numGames):
         doc.Export(ExportIn=pngCasterDesk, ExportAs=2, Options=options)
         time.sleep(2)
         doc.Close(2)
+        print("Caster Screen " + str(loopCount+1) + " Saved")
 
         loopCount +=1
 
