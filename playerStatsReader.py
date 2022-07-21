@@ -36,7 +36,7 @@ else:
 
 team2Data = teamStats.get("A8:I11")
 if len(team2Data[3]) == 1:
-    team1Data = teamStats.get("A8:I10")
+    team2Data = teamStats.get("A8:I10")
     team2Flag = True
 else:
     team2Flag = False
@@ -294,12 +294,12 @@ else:
 #############
 # Player 1
 player1GoalPart = player1.ArtLayers["GoalPart"]
-player1GoalPartText = player1WinPerc.textItem
+player1GoalPartText = player1GoalPart.textItem
 player1GoalPartText.contents = team1WinPerc[0]
 # Player 2
 player2GoalPart = player2.ArtLayers["GoalPart"]
-player2GoalPartText = player2WinPerc.textItem
-player2GoalPartText.contents = team1WinPerc[1]
+player2GoalPartText = player2GoalPart.textItem
+player2GoalPartText.contents = team1GoalPart[1]
 # Player 3
 player3GoalPart = player3.ArtLayers["GoalPart"]
 player3GoalPartText = player3GoalPart.textItem
@@ -491,12 +491,12 @@ else:
 #############
 # Player 1
 player1GoalPart = player1.ArtLayers["GoalPart"]
-player1GoalPartText = player1WinPerc.textItem
+player1GoalPartText = player1GoalPart.textItem
 player1GoalPartText.contents = team2WinPerc[0]
 # Player 2
 player2GoalPart = player2.ArtLayers["GoalPart"]
-player2GoalPartText = player2WinPerc.textItem
-player2GoalPartText.contents = team2WinPerc[1]
+player2GoalPartText = player2GoalPart.textItem
+player2GoalPartText.contents = team2GoalPart[1]
 # Player 3
 player3GoalPart = player3.ArtLayers["GoalPart"]
 player3GoalPartText = player3GoalPart.textItem
