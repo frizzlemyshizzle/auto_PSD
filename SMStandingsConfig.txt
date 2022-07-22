@@ -1,3 +1,4 @@
 [config]
-Tier = Rival
-Conference = Ignis
+Week = 3
+Tier = Premier
+Conference = Glacies
