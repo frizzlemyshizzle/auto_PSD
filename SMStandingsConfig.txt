@@ -1,0 +1,3 @@
+[config]
+Tier = Rival
+Conference = Ignis
