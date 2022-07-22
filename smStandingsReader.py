@@ -141,7 +141,7 @@ for team in standings.teamOrder:
 
 def editTable(teamsConf):
     psApp = win32com.client.Dispatch("Photoshop.Application")
-    psApp.Open(r"C:\Users\jaymu\Desktop\RSC\psd_editor\SMStandings.psd")
+    psApp.Open(os.path.join(__location__, 'SMStandings.psd'))
     doc = psApp.Application.ActiveDocument 
     titlegroup = doc.activeLayer = (doc.layerSets["Title Banner"])
     weekNum = titlegroup.ArtLayers["WeekNum"]
