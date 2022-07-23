@@ -1,0 +1,9 @@
+[config]
+Games = 3
+
+Casters = Vekta,Sennji,Vekta,Moreiskye,Vekta,SaltSkeggur
+Streamer = Bshake
+
+Teams = Abyss,Overwatch,Alhamdoulilah,ATVINTA,Glacier,Eclipse
+Tiers = Master,Premier,Challenger
+Conferences = Ignis,SSSS,Ignis,
