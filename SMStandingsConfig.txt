@@ -2,3 +2,4 @@
 Week = 3
 Tier = Premier
 Conference = Glacies
+Path = C:\Users\jaymu\Desktop\RSC\Auto SM PSD Editor
