@@ -4,6 +4,7 @@ import fixturesClass as fc
 import win32com.client
 import os
 
+
 #################
 # Config Reader #
 #################
@@ -12,6 +13,7 @@ config.read_file(open(r"SMStandingsConfig.txt"))
 configWeek = config.get('config', 'Week')
 configTier = config.get('config', 'Tier')
 configConf = config.get('config', 'Conference')
+configDirectory = config.get('config', 'Path')
 
 
 ###############
@@ -31,9 +33,7 @@ sh = sa.open("RSC10 | Graphics Data")
 wks = sh.worksheet("TableOutput")
 
 # PNG Options
-__location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__)))
-pngFile = (os.path.join(__location__, 'Outputs/SMStandings.png'))
+pngFile = (os.path.join(configDirectory, 'Outputs/SMStandings.png'))
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
 options.Format = 13
 options.quality = 100
@@ -141,7 +141,7 @@ for team in standings.teamOrder:
 
 def editTable(teamsConf):
     psApp = win32com.client.Dispatch("Photoshop.Application")
-    psApp.Open(os.path.join(__location__, 'SMStandings.psd'))
+    psApp.Open(os.path.join(configDirectory, 'SMStandings.psd'))
     doc = psApp.Application.ActiveDocument 
     titlegroup = doc.activeLayer = (doc.layerSets["Title Banner"])
     weekNum = titlegroup.ArtLayers["WeekNum"]
