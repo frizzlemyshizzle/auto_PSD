@@ -8,8 +8,9 @@ import configparser
 # Config Reader #
 #################
 config = configparser.ConfigParser()
-config.read_file(open(r"config.txt"))
+config.read_file(open(r"fixturesConfig.txt"))
 week = config.get('config', 'Week')
+configPath = config.get('config', 'Path')
 
 #########
 # Setup #
@@ -23,7 +24,7 @@ options.PNG8 = False  # Sets it to PNG-24 bit
 
 def editFixtures():
     psApp = win32com.client.Dispatch("Photoshop.Application")
-    psApp.Open(r"C:\Users\jaymu\Desktop\RSC\psd_editor\fixGraphics\RSC10_Weekly_Results.psd")
+    psApp.Open(configPath.join("RSC10_Weekly_Results.psd"))
     doc = psApp.Application.ActiveDocument 
     
     loopCount = 0
@@ -42,40 +43,40 @@ def editFixtures():
             tierClass = fc.prem
             teamClass = fc.teamsPrem
             topGroup = doc.activeLayer = (doc.layerSets["Premier"])
-            pngFixt = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\PremFixtures.png")
-            pngFixtTrans = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\PremFixturesTRANS.png")
+            pngFixt = (configPath.join("Outputs\PremFixtures.png"))
+            pngFixtTrans = (configPath.join("Outputs\PremFixturesTRANS.png"))
         else:
             topGroup = doc.activeLayer = (doc.layerSets["Conference Tiers"])
         if loopCount > premTeams and loopCount <= premTeams+masterTeams:
             tier = 'Master'
             tierClass = fc.master
             teamClass = fc.teamsMaster
-            pngFixt = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\MasterFixtures.png")
-            pngFixtTrans = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\MasterFixturesTRANS.png")
+            pngFixt = (configPath.join("Outputs\MasterFixtures.png"))
+            pngFixtTrans = (configPath.join("Outputs\MasterFixturesTRANS.png"))
         if loopCount > premTeams+masterTeams and loopCount <= premTeams+masterTeams+eliteTeams:
             tier = 'Elite'
             tierClass = fc.elite
             teamClass = fc.teamsElite
-            pngFixt = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\EliteFixtures.png")
-            pngFixtTrans = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\EliteFixturesTRANS.png")
+            pngFixt = (configPath.join("Outputs\EliteFixtures.png"))
+            pngFixtTrans = (configPath.join("Outputs\EliteFixturesTRANS.png"))
         if loopCount > premTeams+masterTeams+eliteTeams and loopCount <= premTeams+masterTeams+eliteTeams+rivalTeams:
             tier = 'Rival'
             tierClass = fc.rival
             teamClass = fc.teamsRival
-            pngFixt = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\RivalFixtures.png")
-            pngFixtTrans = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\RivalFixturesTRANS.png")
+            pngFixt = (configPath.join("Outputs\RivalFixtures.png"))
+            pngFixtTrans = (configPath.join("Outputs\RivalFixturesTRANS.png"))
         if loopCount > premTeams+masterTeams+eliteTeams+rivalTeams and loopCount <= premTeams+masterTeams+eliteTeams+rivalTeams+challTeams:
             tier = 'Challenger'
             tierClass = fc.chall
             teamClass = fc.teamsChall
-            pngFixt = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\ChallengerFixtures.png")
-            pngFixtTrans = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\ChallengerFixturesTRANS.png")
+            pngFixt = (configPath.join("Outputs\ChallengerFixtures.png"))
+            pngFixtTrans = (configPath.join("Outputs\ChallengerFixturesTRANS.png"))
         if loopCount > premTeams+masterTeams+eliteTeams+rivalTeams+challTeams and loopCount <= premTeams+masterTeams+eliteTeams+rivalTeams+challTeams+prospTeams:
             tier = 'Prospect'
             tierClass = fc.prosp
             teamClass = fc.teamsProsp
-            pngFixt = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\ProspectFixtures.png")
-            pngFixtTrans = (r"C:\Users\jaymu\Desktop\RSC\psd_editor\Outputs\ProspectFixturesTRANS.png")
+            pngFixt = (configPath.join("Outputs\ProspectFixtures.png"))
+            pngFixtTrans = (configPath.join("Outputs\ProspectFixturesTRANS.png"))
         
 
 
