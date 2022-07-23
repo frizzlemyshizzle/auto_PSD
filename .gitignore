@@ -12,7 +12,9 @@ fixGraphics/RSC10_Weekly_Results.psd
 service_account.json
 RSC Standings.psd
 __pycache__/fixturesClass.cpython-310.pyc
-deskConfig.txt
 Outputs/CasterDesk.png
 Outputs/CasterDesk3.png
 Outputs/CasterDesk2.png
+fixGraphics/SMStandings.psd
+fixGraphics/Standings (1).psd
+__pycache__/teamsData.cpython-310.pyc
