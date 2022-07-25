@@ -155,38 +155,54 @@ for row in prospData:
 for row in premFixtures:
     fc.prem.teamOrder.append(str(row[0]).upper()) # Team 1
     fc.prem.teamOrder.append(str(row[4]).upper()) # Team 2
-    fc.prem.dateOrder.append(str(row[5][0:5])) # Date
-    fc.prem.timeOrder.append(str(row[6])) # Time
+    if len(row) == 7:
+        fc.prem.dateOrder.append(str(row[5][0:5])) # Date (If Scheduled)
+    else:
+        fc.prem.dateOrder.append(str("TBC"))
 
 for row in masterFixtures:
     fc.master.teamOrder.append(str(row[0]).upper())
     fc.master.teamOrder.append(str(row[4]).upper())
     fc.master.dateOrder.append(str(row[5][0:5]))
-    fc.master.timeOrder.append(str(row[6]))
+    if len(row) == 7:
+        fc.master.dateOrder.append(str(row[5][0:5]))
+    else:
+        fc.master.dateOrder.append(str("TBC"))
 
 for row in eliteFixtures:
     fc.elite.teamOrder.append(str(row[0]).upper())
     fc.elite.teamOrder.append(str(row[4]).upper())
     fc.elite.dateOrder.append(str(row[5][0:5]))
-    fc.elite.timeOrder.append(str(row[6]))
+    if len(row) == 7:
+        fc.elite.dateOrder.append(str(row[5][0:5]))
+    else:
+        fc.elite.dateOrder.append(str("TBC"))
 
 for row in rivalFixtures:
     fc.rival.teamOrder.append(str(row[0]).upper())
     fc.rival.teamOrder.append(str(row[4]).upper())
     fc.rival.dateOrder.append(str(row[5][0:5]))
-    fc.rival.timeOrder.append(str(row[6]))
+    if len(row) == 7:
+        fc.rival.dateOrder.append(str(row[5][0:5]))
+    else:
+        fc.rival.dateOrder.append(str("TBC"))
 
 for row in challFixtures:
     fc.chall.teamOrder.append(str(row[0]).upper())
     fc.chall.teamOrder.append(str(row[4]).upper())
     fc.chall.dateOrder.append(str(row[5][0:5]))
-    fc.chall.timeOrder.append(str(row[6]))
+    if len(row) == 7:
+        fc.chall.dateOrder.append(str(row[5][0:5]))
+    else:
+        fc.chall.dateOrder.append(str("TBC"))
 
 for row in prospFixtures:
     fc.prosp.teamOrder.append(str(row[0]).upper())
     fc.prosp.teamOrder.append(str(row[4]).upper())
-    fc.prosp.dateOrder.append(str(row[5][0:5]))
-    fc.prosp.timeOrder.append(str(row[6]))
+    if len(row) == 7:
+        fc.prosp.dateOrder.append(str(row[5][0:5]))
+    else:
+        fc.prosp.dateOrder.append(str("TBC"))
 
 
 ## Add logo order to classes
@@ -239,6 +255,7 @@ def checkTier(count):
             teamClass = fc.teamsPrem
             topGroup = doc.activeLayer = (doc.layerSets["Premier"])
             pngFixt = (os.path.join(configPath, "Outputs\PremFixtures.png"))
+            pngFixtTrans = (os.path.join(configPath, "Outputs\PremFixturesTrans.png"))
         else:
             topGroup = doc.activeLayer = (doc.layerSets["Conference Tiers"])
         if count == 1:
@@ -246,46 +263,52 @@ def checkTier(count):
             tierClass = fc.master
             teamClass = fc.teamsMaster
             pngFixt = (os.path.join(configPath, "Outputs\MasterFixtures.png"))
+            pngFixtTrans = (os.path.join(configPath, "Outputs\MasterFixturesTrans.png"))
         if count == 2:
             tier = "Elite"
             tierClass = fc.elite
             teamClass = fc.teamsElite
             pngFixt = (os.path.join(configPath, "Outputs\EliteFixtures.png"))
+            pngFixtTrans = (os.path.join(configPath, "Outputs\EliteFixturesTrans.png"))
         if count == 3:
             tier = 'Rival'
             tierClass = fc.rival
             teamClass = fc.teamsRival
             pngFixt = (os.path.join(configPath, "Outputs\RivalFixtures.png"))
+            pngFixtTrans = (os.path.join(configPath, "Outputs\RivalFixturesTrans.png"))
         if count == 4:
             tier = 'Challenger'
             tierClass = fc.chall
             teamClass = fc.teamsChall
             pngFixt = (os.path.join(configPath, "Outputs\ChallengerFixtures.png"))
+            pngFixtTrans = (os.path.join(configPath, "Outputs\ChallengerFixturesTrans.png"))
         if count == 5:
             tier = 'Prospect'
             tierClass = fc.prosp
             teamClass = fc.teamsProsp
             pngFixt = (os.path.join(configPath, "Outputs\ProspectFixtures.png"))
+            pngFixtTrans = (os.path.join(configPath, "Outputs\ProspectFixturesTrans.png"))
         ## Edit Week Number ##
         topGroup.visible = True
         weekGroup = topGroup.layerSets["WeekNumGroup"]
         weekLayer = weekGroup.ArtLayers["WeekNum"]
         weekText = weekLayer.textItem
         weekText.contents = 'WEEK ' + str(configWeek)
-        print("----------------")
-        editFixtures(topGroup, teamClass, tierClass, tier, pngFixt)
+        editFixtures(topGroup, teamClass, tierClass, tier, pngFixt, pngFixtTrans)
     else:
         print("Finished")
         endTime = time.time()
-        print("Exectution time" + str((endTime-startTime)) + "s")
+        print("Exectution time: " + str((endTime-startTime)))
+        input("Press Enter to close.")
 
 
-def editFixtures(topGroup,teamClass,tierClass, tier, pngFixt,):   
+def editFixtures(topGroup,teamClass,tierClass, tier, pngFixt, pngFixtTrans):   
     currLoopCount = 0
     maxLoops = len(teamClass)//2
     gameCount = 0
     flag = True
     print("Tier: " + tier)
+    print("----------------")
     if tier == "Premier":
         maxLoops = len(teamClass)//2
     else:
@@ -354,9 +377,13 @@ def editFixtures(topGroup,teamClass,tierClass, tier, pngFixt,):
     psApp = win32com.client.Dispatch("Photoshop.Application")
     doc = psApp.Application.ActiveDocument 
     doc.Export(ExportIn = pngFixt, ExportAs=2, Options=options)
+    bg = doc.artLayers["Background"]
+    bg.visible = False
+    doc.Export(ExportIn = pngFixtTrans, ExportAs=2, Options=options)
     doc.Close(2)
     print(tier + " Tier Complete")
-    print("------------")
+    print("Reloading PSD. This may take some time.")
+    print("----------------------------------------")
     if tier == 'Premier':
         count = 1
     if tier == 'Master':
@@ -368,5 +395,7 @@ def editFixtures(topGroup,teamClass,tierClass, tier, pngFixt,):
     if tier == 'Challenger':
         count = 5
     checkTier(count)
-print("Editing Upcoming Fixtures for " + str(totalGames) + " games")
+print("Editing upcoming fixtures for week {} games".format(configWeek))
+print("Loading Photoshop and/or PSD. This may take some time.")
+print("--------------------------------------------------------")
 checkTier(loopCount)
