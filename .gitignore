@@ -11,3 +11,25 @@ fixGraphics/RSC10_Standings.psd
 fixGraphics/RSC10_Weekly_Results.psd
 service_account.json
 RSC Standings.psd
+fixGraphics/RSC10_PlayerStats.psd
+fixGraphics/RSC10_VS_Screen.psd
+fixGraphics/StandingsSocials.psd
+Outputs/ChallengerFixtures.png
+Outputs/ChallengerFixturesTrans.png
+Outputs/EliteFixtures.png
+Outputs/EliteFixturesTrans.png
+Outputs/MasterFixtures.png
+Outputs/MasterFixturesTrans.png
+Outputs/MasterStandingsGlacies.png
+Outputs/PremFixtures.png
+Outputs/PremFixturesTrans.png
+Outputs/ProspectFixtures.png
+Outputs/ProspectFixturesTrans.png
+Outputs/RivalFixtures.png
+Outputs/RivalFixturesTrans.png
+__pycache__/fixturesClass.cpython-310.pyc
+__pycache__/teamsData.cpython-310.pyc
+__pycache__/weeklyFixturesEditor.cpython-310.pyc
+__pycache__/weeklyFixturesReader.cpython-310.pyc
+RSC10_Weekly_Results.psd
+fixturesConfig.txt
