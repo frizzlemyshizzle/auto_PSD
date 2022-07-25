@@ -23,3 +23,9 @@ __pycache__/fixturesClass.cpython-310.pyc
 __pycache__/weeklyFixturesEditor.cpython-310.pyc
 __pycache__/weeklyFixturesReader.cpython-310.pyc
 fixturesConfig.txt
+Outputs/ChallengerFixtures.png
+Outputs/EliteFixtures.png
+Outputs/MasterFixtures.png
+Outputs/PremFixtures.png
+Outputs/ProspectFixtures.png
+Outputs/RivalFixtures.png
