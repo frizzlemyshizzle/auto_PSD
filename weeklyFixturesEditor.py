@@ -1,9 +1,8 @@
-from click import option
 import win32com.client
 import weeklyFixturesReader as wfr
 import fixturesClass as fc
 import configparser
-
+import os
 #################
 # Config Reader #
 #################
@@ -20,14 +19,13 @@ options.Format = 13
 options.quality = 100
 options.PNG8 = False  # Sets it to PNG-24 bit
 
-
-
 def editFixtures():
     psApp = win32com.client.Dispatch("Photoshop.Application")
-    psApp.Open(configPath.join("RSC10_Weekly_Results.psd"))
+    
+    psApp.Open(os.path.join(configPath, "RSC10_Weekly_Results.psd"))
     doc = psApp.Application.ActiveDocument 
     
-    loopCount = 0
+    loopCount = 18
     premTeams = len(fc.teamsPrem)
     masterTeams = len(fc.teamsMaster)
     eliteTeams = len(fc.teamsElite)
@@ -432,4 +430,4 @@ def editFixtures():
     doc.Export(ExportIn=pngFixtTrans, ExportAs=2, Options=options)
     doc.Close(2)
 
-editFixtures()
+    editFixtures()
