@@ -5,6 +5,8 @@ import fixturesClass as fc
 import time
 import os
 
+
+startTime = time.time()
 #################
 # Config Reader #
 #################
@@ -26,12 +28,12 @@ tiers = tiers.split(',')
 confs = config.get('config', 'Conferences')
 confs = confs.split(',')
 
+configDirectory = config.get('config', 'Path')
+
 #########
 # Setup #
 #########
 
-__location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
 options.Format = 13
@@ -48,7 +50,7 @@ psApp = win32com.client.Dispatch("Photoshop.Application")
 def editDesk(numGames):
     loopCount = 0
     while loopCount < numGames:
-        psApp.Open(os.path.join(__location__, 'RSC10_CasterScreen.psd'))
+        psApp.Open(os.path.join(configDirectory, 'RSC10_CasterScreen.psd'))
         doc = psApp.Application.ActiveDocument     
         ## Class Setter
         if tiers[0] == "Premier":
@@ -131,11 +133,11 @@ def editDesk(numGames):
         teams.pop(0)
         teams.pop(0)
         if loopCount == 0:
-            pngCasterDesk = (os.path.join(__location__, 'Outputs/CasterDesk.png'))
+            pngCasterDesk = (os.path.join(configDirectory, 'Outputs/CasterDesk.png'))
         if loopCount == 1:
-            pngCasterDesk = (os.path.join(__location__, 'Outputs/CasterDesk2.png'))  
+            pngCasterDesk = (os.path.join(configDirectory, 'Outputs/CasterDesk2.png'))  
         if loopCount == 2:
-            pngCasterDesk = (os.path.join(__location__, 'Outputs/CasterDesk3.png'))     
+            pngCasterDesk = (os.path.join(configDirectory, 'Outputs/CasterDesk3.png'))     
         doc.Export(ExportIn=pngCasterDesk, ExportAs=2, Options=options)
         doc.Close(2)
         print("Caster Screen " + str(loopCount+1) + " Saved")
@@ -143,6 +145,8 @@ def editDesk(numGames):
         loopCount +=1
 
     print(str(numGames) + " Caster Sreens Edited")
+    endTime = time.time()
+    print("Execution time: " + str((endTime - startTime)))
     input("Press Enter to close.")
 
 
