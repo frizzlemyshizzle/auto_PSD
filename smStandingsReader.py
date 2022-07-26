@@ -32,12 +32,7 @@ sa = gspread.service_account(filename="service_account.json")
 sh = sa.open("RSC10 | Graphics Data")
 wks = sh.worksheet("TableOutput")
 
-# PNG Options
-pngFile = (os.path.join(configDirectory, 'Outputs/SMStandings.png'))
-options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
-options.Format = 13
-options.quality = 100
-options.PNG8 = False  # Sets it to PNG-24 bit
+
 
 offset = 1
 premCount = 0
@@ -113,7 +108,7 @@ if configTier == 'Rival':
     teamsConf = rivalCount//2
 if configTier == 'Challenger':
     tierData = challData
-    tierClass = fc.teamsChall//2
+    tierClass = fc.teamsChall
     teamsConf = challCount//2
 if configTier == 'Prospect':
     tierData = prospData
@@ -135,7 +130,12 @@ for team in standings.teamOrder:
     standings.abbrOrder.append(tierClass[team])
 
             
-
+# PNG Options
+pngFile = (os.path.join(configDirectory, 'Outputs/SMStandings{}.png'.format(configTier)))
+options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
+options.Format = 13
+options.quality = 100
+options.PNG8 = False  # Sets it to PNG-24 bit
 
 
 
