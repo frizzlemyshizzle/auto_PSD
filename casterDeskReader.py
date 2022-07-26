@@ -48,7 +48,7 @@ psApp = win32com.client.Dispatch("Photoshop.Application")
 def editDesk(numGames):
     loopCount = 0
     while loopCount < numGames:
-        psApp.Open(os.path.join(__location__, 'fixGraphics/RSC10_CasterScreen.psd'))
+        psApp.Open(os.path.join(__location__, 'RSC10_CasterScreen.psd'))
         doc = psApp.Application.ActiveDocument     
         ## Class Setter
         if tiers[0] == "Premier":
@@ -143,6 +143,7 @@ def editDesk(numGames):
         loopCount +=1
 
     print(str(numGames) + " Caster Sreens Edited")
+    input("Press Enter to close.")
 
 
 editDesk(int(numGames))
