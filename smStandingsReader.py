@@ -131,7 +131,7 @@ for team in standings.teamOrder:
 
             
 # PNG Options
-pngFile = (os.path.join(configDirectory, 'Outputs/SMStandings{}.png'.format(configTier)))
+pngFile = (os.path.join(configDirectory, 'Outputs/SMStandings-{}-{}.png'.format(configTier, configConf)))
 options = win32com.client.Dispatch('Photoshop.ExportOptionsSaveForWeb')
 options.Format = 13
 options.quality = 100
