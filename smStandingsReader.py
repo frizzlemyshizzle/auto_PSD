@@ -140,9 +140,13 @@ options.PNG8 = False  # Sets it to PNG-24 bit
 
 
 def editTable(teamsConf):
+    print("Opening Photoshop and/or PSD")
+    print("----------------------------")
     psApp = win32com.client.Dispatch("Photoshop.Application")
     psApp.Open(os.path.join(configDirectory, 'SMStandings.psd'))
     doc = psApp.Application.ActiveDocument 
+    print("Editing PSD for {}, {}, Week {}. ".format(configConf, configTier, configWeek))
+    print("-------------------------------")
     titlegroup = doc.activeLayer = (doc.layerSets["Title Banner"])
     weekNum = titlegroup.ArtLayers["WeekNum"]
     weeknumText = weekNum.textItem
@@ -166,6 +170,8 @@ def editTable(teamsConf):
         teamLogo = teamLogoGroup.ArtLayers[standings.abbrOrder[loopCount]]
         teamLogo.visible = True
         loopCount += 1
+        print("Team {} done.".format(loopCount))
+        print("-------------------")
 
     if configTier == 'Premier':
         extraTeamGroup =  doc.activeLayer = (doc.layerSets["Team 9"])
@@ -174,6 +180,8 @@ def editTable(teamsConf):
         extraTeamGroup2.visible = False
     doc.Export(ExportIn=pngFile, ExportAs=2, Options=options)
     doc.Close(2)
+    print("Finished")
+    input("Press Enter to close.")
     
     
 
