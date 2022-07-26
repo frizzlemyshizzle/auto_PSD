@@ -42,9 +42,8 @@ Outputs/ProspectFixturesTrans.png
 Outputs/RivalFixtures.png
 Outputs/RivalFixturesTrans.png
 fixturesConfig.txt
-SMStandingsConfig.txt
-SMStandingsConfig.txt
 fixGraphics/RSC10_VS_Screen.psd
 fixGraphics/StandingsSocials.psd
 __pycache__/weeklyFixturesEditor.cpython-310.pyc
 __pycache__/weeklyFixturesReader.cpython-310.pyc
+
