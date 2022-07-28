@@ -1,4 +1,3 @@
-from asyncore import loop
 import configparser
 import win32com.client
 import fixturesClass as fc
