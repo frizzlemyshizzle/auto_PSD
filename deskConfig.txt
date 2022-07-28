@@ -1,4 +1,5 @@
 [config]
+Path = C:\Users\jaymu\Desktop\RSC\psd_editor
 Games = 3
 
 Casters = Vekta,Sennji,Vekta,Moreiskye,Vekta,SaltSkeggur
