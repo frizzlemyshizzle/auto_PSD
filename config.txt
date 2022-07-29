@@ -1,5 +1,5 @@
 [config]
-Tier = Rival
-Week = 5
+Path = C:\Users\jaymu\Desktop\RSC\psd_editor
 
+Week = 3
 
