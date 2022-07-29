@@ -164,7 +164,7 @@ for row in prospData:
 
 
 
-tierCcount = 1
+tierCcount = 0
 
 def checkTier(tierCount):
     psApp = win32com.client.Dispatch("Photoshop.Application")
