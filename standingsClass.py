@@ -1,6 +1,7 @@
 franchises = {"ASCENCE ESPORTS": "ASC",
             "HAMOOD": "HAM",
             "LEODIS": "LDS",
+            "ALHAMDOULILAH": "ALH",
             "PINGUINOS CF": "PCF",
             "SYMBIOTES":"SYM",
             "SHADOW ESPORTS":"SE",
@@ -21,7 +22,23 @@ franchises = {"ASCENCE ESPORTS": "ASC",
             "MIGHT OF HADES":"MoH",
             "WAIFU FAN CLUB":"UWU",
             "OX GAMING":"OX",
-            "DSQ ESPORTS":"DSQ"}
+            "DSQ ESPORTS":"DSQ",
+            "ARCTIC FRENZY": "AF", 
+            "FEARLESS ESPORTS": "FRLS",
+            "CENTURIONS": "FT",
+            "PARADISE": "SANC",
+            "SHAMAN ESPORTS": "SHMN",
+            "DOMINION": "SYM",
+            "NAMI BRIGADE": "UWU",
+            "DUST SUCKER": "OX",
+            "GALAMO ESPORTS": "GALA",
+            "VULCAN": "FORG",
+            "ALHAMDOULILAH": "ALH",
+            "ASCENCE ESPORTS": "ASC",
+            "ATVINTA": "ATV",
+            "HAMOOD": "HAM",
+            "LEODIS": "LDS",
+            "PINGUINOS CF": "PCF"}
 
 class PremStandings:
     franchOrder = []
