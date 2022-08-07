@@ -202,24 +202,30 @@ def checkTier(tierCount):
         tierGroup.visible = True
         weekNum = titleGroup.artLayers["WeekNum"]
         weekNumText = weekNum.TextItem
-        weekNumText.contents = "WEEK | " + str(configWeek)
+        weekNumText.contents = "WEEK " + str(configWeek)
         tierCount += 1
-        editStandings(tier, tierClass, tierCount)
+        editStandings(tier, tierClass, tierCount, tierGroup)
         
     else:
+        print("------------------")
+        print("All tiers complete")
         print("Finished")
         endTime = time.time()
         print("Execution time: " + str(endTime-startTime))
 
-def editStandings(tier, tierClass, tierCount):
+def editStandings(tier, tierClass, tierCount, tierGroup):
     psApp = win32com.client.Dispatch("Photoshop.Application")
     psApp.Open(os.path.join(configPath, "RSC_Standings.psd"))
     doc = psApp.Application.ActiveDocument 
     currLoop = 0
     maxLoops = len(tierClass.franchOrder)
     gameCount = 0
-    flag = True
     print("Tier: " + tier)
+    if tier == "Premier":
+        premFlag = True
+    else:
+        premFlag = False
+    confFlag = True
     while currLoop < maxLoops:
         psApp.Open(os.path.join(configPath, "RSC_Standings.psd"))
         doc = psApp.Application.ActiveDocument 
@@ -227,14 +233,18 @@ def editStandings(tier, tierClass, tierCount):
         if currLoop < maxLoops//2:
             conf = "Ignis"
             confBanner = confGroup.artLayers["Ignis"]
+            confBanner.visible = True
         if currLoop >= maxLoops//2 and currLoop < maxLoops:
             conf = "Glacies"
             confBanner = confGroup.artLayers["Glacies"]
-            if flag == True:
+            if confFlag == True:
                 gameCount = 0
                 confGroup.artLayers["Ignis"].visible = False
-                flag = False
+                confFlag = False
         confBanner.visible = True
+        titleGroup = doc.activeLayer = (doc.layerSets["Title"])
+        tierGroup = titleGroup.layerSets[tier]
+        tierGroup.visible = True
 
         teamGroup = doc.layerSets["Team {}".format(gameCount + 1)]
 
@@ -286,13 +296,18 @@ def editStandings(tier, tierClass, tierCount):
         print("---------------")
         currLoop += 1
         gameCount += 1
+        if premFlag == True:
+            teamGroup9 = doc.layerSets["Team 9"]
+            teamGroup9.visible = False
+            teamGroup10 = doc.layerSets["Team 10"]
+            teamGroup10.visible = False
         if currLoop == maxLoops//2:
             pngImage = (os.path.join(configPath, "Outputs/Standings-W{}-{}-{}.png".format(configWeek, tier, conf)))
             print("Saving PNG for {}, {}".format(tier, conf))
             print("-----------------------------")
             doc.Export(ExportIn=pngImage, ExportAs=2, Options=options)
             doc.Close(2)
-        if currLoop == len(tierClass.franchOrder):
+        if currLoop == maxLoops:
             pngImage = (os.path.join(configPath, "Outputs/Standings-W{}-{}-{}.png".format(configWeek, tier, conf)))
             print("Saving PNG for {}, {}".format(tier, conf))
             print("-----------------------------")
