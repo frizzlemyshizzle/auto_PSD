@@ -210,6 +210,7 @@ def checkTier(tierCount):
         print("------------------")
         print("All tiers complete")
         print("Finished")
+        input("Press Enter to exit")
         endTime = time.time()
         print("Execution time: " + str(endTime-startTime))
 
