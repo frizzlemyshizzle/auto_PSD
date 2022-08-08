@@ -381,6 +381,7 @@ def editFixtures(topGroup,teamClass,tierClass, tier, pngFixt, pngFixtTrans):
     bg.visible = False
     doc.Export(ExportIn = pngFixtTrans, ExportAs=2, Options=options)
     doc.Close(2)
+    print("PNGs saved.")
     print(tier + " Tier Complete")
     print("Reloading PSD. This may take some time.")
     print("----------------------------------------")
@@ -394,6 +395,8 @@ def editFixtures(topGroup,teamClass,tierClass, tier, pngFixt, pngFixtTrans):
         count = 4
     if tier == 'Challenger':
         count = 5
+    if tier == 'Prospect':
+        count = 6
     checkTier(count)
 print("Editing upcoming fixtures for week {} games".format(configWeek))
 print("Loading Photoshop and/or PSD. This may take some time.")
